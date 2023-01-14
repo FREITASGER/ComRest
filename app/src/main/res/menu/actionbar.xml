@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/view_maps"
+        android:id="@+id/save_topbar"
         android:icon="@drawable/icon_maps"
         android:title="Item"
         app:showAsAction="always" />

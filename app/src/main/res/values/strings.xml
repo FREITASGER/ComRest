@@ -1,3 +1,25 @@
 <resources>
     <string name="app_name">comrest</string>
+    <string name="are_you_sure_you_modify">Are you sure you modify</string>
+    <string name="restaurant_modify">Restaurant Modify</string>
+    <string name="yes">Yes</string>
+    <string name="not">Not</string>
+    <string name="are_you_sure_you_want_delete">Are you sure you want delete</string>
+    <string name="restaurant_delete">Restaurant Delete</string>
+    <string name="select_one_postion_in_the_map">Select one position in the map</string>
+    <string name="register_restaurant">Add restaurant</string>
+    <string name="error_message">Error</string>
+    <string name="do_you_want_delete">Do you want delete</string>
+    <string name="restaurante_delete">Delete Restaurant</string>
+    <string name="are_you_sure_modify">Are you sure modify</string>
+    <string name="list">Lst</string>
+    <string name="add_restaurant">Add Restaurant</string>
+    <string name="name">Name:</string>
+    <string name="comment">Comment:</string>
+    <string name="vegan">Vegan</string>
+    <string name="checkbox">CheckBox</string>
+    <string name="delete">Delete</string>
+    <string name="modify">Modify</string>
+    <string name="cancel">Cancel</string>
+    <string name="details">Details</string>
 </resources>
