@@ -56,12 +56,12 @@ public class RestarurantRegisterActivity extends AppCompatActivity {
 
     /**
      * Metodo que llama el boton add_restaurant_button que tiene definido en onclick saveButtonRestaurant en el layout activity_register_restaurant.xml
-     * @param view
+     * @param
      */
     public void saveButton(){
         EditText etName = findViewById(R.id.edit_text_name); //recogemos los datos de las cajas de texto del layout
         EditText etComment = findViewById(R.id.edit_text_comment);
-        CheckBox cbVegan = (CheckBox) findViewById(R.id.checkbox_vegan);
+        CheckBox cbVegan = findViewById(R.id.checkbox_vegan);
 
         String name = etName.getText().toString(); //Pasamos la cajas de texto a un String
         String comment = etComment.getText().toString();
@@ -83,6 +83,7 @@ public class RestarurantRegisterActivity extends AppCompatActivity {
 
             Toast.makeText(this, "Restaurante registrado", Toast.LENGTH_LONG).show();
             etName.setText(""); //Para vaciar las cajas de texto y prepararlas para registrar otra tarea
+            etComment.setText("");
 
             etName.requestFocus(); //recuperamos el foco
         } catch (SQLiteConstraintException sce) {
@@ -101,8 +102,8 @@ public class RestarurantRegisterActivity extends AppCompatActivity {
 
     /**
      * Metodoque llama el boton back_button que tiene definido en onclick goBackButton en el layout
-     * @param view
-     * onBackPressed(); Volver atras
+     * @param
+     * //onBackPressed(); Volver atras
      */
     public void goBack() {
         onBackPressed(); //Volver atrás

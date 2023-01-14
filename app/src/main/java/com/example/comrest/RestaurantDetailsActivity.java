@@ -94,7 +94,7 @@ public class RestaurantDetailsActivity extends AppCompatActivity {
 
         tvName.setText(restaurant.getName());
         tvComment.setText(restaurant.getComment());
-        cbVegano.isChecked();
+        cbVegano.setChecked(restaurant.isVegan());
 
     }
 

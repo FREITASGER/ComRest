@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_margin="10dp"
     tools:context=".MainActivity">
 
     <ImageView
@@ -16,7 +17,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:srcCompat="@tools:sample/avatars" />
+        tools:srcCompat="@drawable/ic_baseline_restaurant_menu_24" />
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -27,45 +28,46 @@
         app:layout_constraintBottom_toBottomOf="parent"
         tools:layout_editor_absoluteX="0dp">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="116dp"
+            android:orientation="vertical">
 
-            <Button
-                android:id="@+id/add_restaurant"
-                android:layout_width="192dp"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:text="Crear Restaurante"
-                app:icon="@drawable/ic_baseline_restaurant_menu_24"
-                app:layout_constraintEnd_toEndOf="parent"
-                tools:layout_editor_absoluteY="10dp" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="10dp">
+
+                <Button
+                    android:id="@+id/list_restaurant"
+                    android:layout_width="192dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:text="Listar"
+                    app:icon="@drawable/listar"
+                    app:layout_constraintStart_toStartOf="parent"
+                    tools:layout_editor_absoluteY="10dp" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <Button
+                    android:id="@+id/add_restaurant"
+                    android:layout_width="192dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:text="Crear Restaurante"
+                    app:icon="@drawable/ic_baseline_restaurant_menu_24"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    tools:layout_editor_absoluteY="10dp" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </LinearLayout>
 
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="116dp"
-        android:orientation="vertical"
-        app:layout_constraintTop_toBottomOf="@+id/imageView"
-        tools:layout_editor_absoluteX="0dp">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <Button
-                android:id="@+id/list_restaurant"
-                android:layout_width="192dp"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:text="Listar"
-                app:icon="@drawable/listar"
-                app:layout_constraintStart_toStartOf="parent"
-                tools:layout_editor_absoluteY="10dp" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
