@@ -2,12 +2,15 @@ package com.example.comrest;
 
 import static com.example.comrest.AppDatabase.Constants.DATABASE_NAME;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.room.Room;
 
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.CheckBox;
 import android.widget.TextView;
 
@@ -104,5 +107,31 @@ public class RestaurantDetailsActivity extends AppCompatActivity {
     private void restaurantList () {
         Intent intent = new Intent(this, RestaurantAllActivity.class); //Desde la vista que estamos a la vista que queremos ir
         startActivity(intent); //iniciamos el intent
+    }
+
+    /**
+     * PAra crear el menu (el actionBar)
+     * @param menu
+     * @return
+     */
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.actionbar, menu); //Inflamos el menu
+        return true;
+    }
+
+    /**
+     * Para cuando elegimos una opcion del menu
+     * @param item
+     * @return
+     */
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == R.id.save_topbar) { //Para cuando pulsan en la boton del mapa en el actionbar
+            Intent intent = new Intent(this, MapsActivity.class); //donde nos manda al pinchar sobre el boton mapas en el action bar
+            startActivity(intent);
+            return true;
+        }
+        return false;
     }
 }

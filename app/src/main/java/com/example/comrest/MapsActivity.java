@@ -2,11 +2,15 @@ package com.example.comrest;
 
 import static com.example.comrest.AppDatabase.Constants.DATABASE_NAME;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.room.Room;
 
+import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 
 import com.example.comrest.AppDatabase.AppDatabase;
 import com.example.comrest.domain.Restaurant;
@@ -42,14 +46,14 @@ public class MapsActivity extends AppCompatActivity {
         final AppDatabase db = Room.databaseBuilder(this, AppDatabase.class, DATABASE_NAME)
                 .allowMainThreadQueries().build();
         List<Restaurant> restaurantList = db.restaurantDao().getAll(); //Lista de la tareas
-        addBrigdeToMap(restaurantList); // se lo pasamos al metodo
+        addRestaurantToMap(restaurantList); // se lo pasamos al metodo
     }
 
     /**
      * Metodo para sacar una lista de restaurantes con un for para crear un point por cada restaurante con la longitude y latitude mas el nombre del restaurante
      * @param
      */
-    private void addBrigdeToMap(List<Restaurant> restaurantList) {
+    private void addRestaurantToMap(List<Restaurant> restaurantList) {
         for (Restaurant restaurant : restaurantList) {
             Point point = Point.fromLngLat(restaurant.getLongitude(), restaurant.getLatitude());
             addMarker(point, restaurant.getName()); //le pasamos el metodo que crea el marker y ponemos el point y nombre del restaurante
@@ -93,6 +97,32 @@ public class MapsActivity extends AppCompatActivity {
                 .bearing(-17.6)
                 .build();
         mapView.getMapboxMap().setCamera(cameraPosition);
+    }
+
+    /**
+     * PAra crear el menu (el actionBar)
+     * @param menu
+     * @return
+     */
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.actionbar, menu); //Inflamos el menu
+        return true;
+    }
+
+    /**
+     * Para cuando elegimos una opcion del menu
+     * @param item
+     * @return
+     */
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == R.id.save_topbar) { //Para cuando pulsan en la boton del mapa en el actionbar
+            Intent intent = new Intent(this, MapsActivity.class); //donde nos manda al pinchar sobre el boton mapas en el action bar
+            startActivity(intent);
+            return true;
+        }
+        return false;
     }
 
 }

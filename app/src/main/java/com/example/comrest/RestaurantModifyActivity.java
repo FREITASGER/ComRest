@@ -2,6 +2,7 @@ package com.example.comrest;
 
 import static com.example.comrest.AppDatabase.Constants.DATABASE_NAME;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.room.Room;
 
@@ -10,6 +11,8 @@ import android.content.Intent;
 import android.database.sqlite.SQLiteConstraintException;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -31,6 +34,8 @@ import com.mapbox.maps.plugin.annotation.generated.PointAnnotationOptions;
 import com.mapbox.maps.plugin.gestures.GesturesPlugin;
 import com.mapbox.maps.plugin.gestures.GesturesUtils;
 
+import java.util.List;
+
 public class RestaurantModifyActivity extends AppCompatActivity {
 
     private MapView restaurantMapModify; //Para pintar la ubicacion nueva en el plano
@@ -45,6 +50,8 @@ public class RestaurantModifyActivity extends AppCompatActivity {
 
         restaurantMapModify = findViewById(R.id.restaurantMapModify); //le pasamos el mapa creado en el layout
 
+        initializePointManager();// Para que se cree nada más arrancar
+
         Intent intent = new Intent(getIntent());
         restaurantId = getIntent().getLongExtra("restaurant_id", 0); //guardamos el id que nos traemos de la vista general
 
@@ -54,8 +61,10 @@ public class RestaurantModifyActivity extends AppCompatActivity {
         Restaurant restaurant = db.restaurantDao().getById(restaurantId); //Creamos el objeto por su Id
         fillData(restaurant); //rellenamos los datos con el método
 
+//        setCameraPosition(Point.fromLngLat(restaurant.getLongitude(), restaurant.getLatitude())); //Fijamos la camara del mapa en el puente a modificar
 //        addMarker(Point.fromLngLat(restaurant.getLongitude(), restaurant.getLatitude())); //le pasamos el metodo que crea el marker y ponemos el point y nombre del puente
-        setCameraPosition(Point.fromLngLat(restaurant.getLongitude(), restaurant.getLatitude())); //Fijamos la camara del mapa en el puente a modificar
+
+        addRestaurantToMap(restaurant);
 
         GesturesPlugin gesturesPlugin = GesturesUtils.getGestures(restaurantMapModify);
         gesturesPlugin.addOnMapClickListener(point -> { //Cuando hacemos click en el mapa devolvemos un point
@@ -65,7 +74,6 @@ public class RestaurantModifyActivity extends AppCompatActivity {
             return true;
         });
 
-        initializePointManager();// Para que se cree nada más arrancar
     }
 
     /**
@@ -138,6 +146,18 @@ public class RestaurantModifyActivity extends AppCompatActivity {
     }
 
     /**
+     * Metodo para sacar una lista de restaurantes con un for para crear un point por cada restaurante con la longitude y latitude mas el nombre del restaurante
+     * @param
+     */
+    private void addRestaurantToMap(Restaurant restaurant) {
+
+        Point point = Point.fromLngLat(restaurant.getLongitude(), restaurant.getLatitude());
+        addMarker(point); //le pasamos el metodo que crea el marker y ponemos el point y nombre del restaurante
+
+        setCameraPosition(Point.fromLngLat(restaurant.getLongitude(), restaurant.getLatitude())); //Fijamos la camara del mapa en el ultimo restaurante
+    }
+
+    /**
      * Para inicializar el Pointmanager y asi la podemos dejar inicializada nada más arracar en onCreate
      */
     private void initializePointManager() {
@@ -177,6 +197,32 @@ public class RestaurantModifyActivity extends AppCompatActivity {
                 .bearing(-17.6)
                 .build();
         restaurantMapModify.getMapboxMap().setCamera(cameraPosition);
+    }
+
+    /**
+     * PAra crear el menu (el actionBar)
+     * @param menu
+     * @return
+     */
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.actionbar, menu); //Inflamos el menu
+        return true;
+    }
+
+    /**
+     * Para cuando elegimos una opcion del menu
+     * @param item
+     * @return
+     */
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == R.id.save_topbar) { //Para cuando pulsan en la boton del mapa en el actionbar
+            Intent intent = new Intent(this, MapsActivity.class); //donde nos manda al pinchar sobre el boton mapas en el action bar
+            startActivity(intent);
+            return true;
+        }
+        return false;
     }
 
 }

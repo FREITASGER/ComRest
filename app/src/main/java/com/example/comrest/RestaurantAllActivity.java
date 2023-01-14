@@ -2,12 +2,16 @@ package com.example.comrest;
 
 import static com.example.comrest.AppDatabase.Constants.DATABASE_NAME;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.room.Room;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 
 import com.example.comrest.Adapter.RestaurantAdapter;
 import com.example.comrest.AppDatabase.AppDatabase;
@@ -63,6 +67,32 @@ public class RestaurantAllActivity extends AppCompatActivity {
         restaurantList.clear(); //Vaciamos la lista por si tuviera algo
         restaurantList.addAll(db.restaurantDao().getAll()); //Añadimos xtodo lo que la BBDD nos devuelve
         adapter.notifyDataSetChanged(); //Para que actualice desde la BBDD
+    }
+
+    /**
+     * PAra crear el menu (el actionBar)
+     * @param menu
+     * @return
+     */
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.actionbar, menu); //Inflamos el menu
+        return true;
+    }
+
+    /**
+     * Para cuando elegimos una opcion del menu
+     * @param item
+     * @return
+     */
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == R.id.save_topbar) { //Para cuando pulsan en la boton del mapa en el actionbar
+            Intent intent = new Intent(this, MapsActivity.class); //donde nos manda al pinchar sobre el boton mapas en el action bar
+            startActivity(intent);
+            return true;
+        }
+        return false;
     }
 
 }
