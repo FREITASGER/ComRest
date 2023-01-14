@@ -91,7 +91,7 @@ public class RestaurantModifyActivity extends AppCompatActivity {
 
         //If por si acaso el point no está creado, el usuario no ha selecionado nada en el mapa, asi no da error al crear la tarea porque falte latitude y longuitude
         if (point == null) {
-            Toast.makeText(this, "Selecciona una ubicación", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, R.string.select_one_postion_in_the_map, Toast.LENGTH_LONG).show();
 //            Snackbar.make(etName, R.string.select_location_message, BaseTransientBottomBar.LENGTH_LONG); //etName porque el Snackbar hay que asociarlo algún componente del layout
             return;
         }
@@ -103,9 +103,9 @@ public class RestaurantModifyActivity extends AppCompatActivity {
         //Controlamos que la tarea no esta ya creada en su campo primary key, controlando la excepcion
         try {
             AlertDialog.Builder builder = new AlertDialog.Builder(this); //le pasamos el contexto donde estamos
-            builder.setMessage("Quieres modificar el restaurante")
-                    .setTitle("Modificar Restaurante")
-                    .setPositiveButton("Si", (dialog, id) -> { //Añadimos los botones
+            builder.setMessage(R.string.are_you_sure_you_modify)
+                    .setTitle(R.string.restaurant_modify)
+                    .setPositiveButton(R.string.yes, (dialog, id) -> { //Añadimos los botones
                         final AppDatabase dbD = Room.databaseBuilder(this, AppDatabase.class, DATABASE_NAME) //Instanciamos la BBDD -< PAsamos el contexto para saber donde estamos
                                 .allowMainThreadQueries().build();
 
@@ -116,12 +116,12 @@ public class RestaurantModifyActivity extends AppCompatActivity {
                         intent.putExtra("restaurant_id", restaurant.getRestaurant_id());
                         this.startActivity(intent); //lanzamos el intent que nos lleva al layout correspondiente
                     })
-                    .setNegativeButton("No", (dialog, id) -> dialog.dismiss()); //Botones del dialogo que salta
+                    .setNegativeButton(R.string.not, (dialog, id) -> dialog.dismiss()); //Botones del dialogo que salta
             AlertDialog dialog = builder.create();
             dialog.show();//Importante para que se muestre
 
         } catch (SQLiteConstraintException sce) {
-            Snackbar.make(etName, "Error al modificar", BaseTransientBottomBar.LENGTH_LONG);
+            Snackbar.make(etName, R.string.error_message, BaseTransientBottomBar.LENGTH_LONG);
         }
     }
 

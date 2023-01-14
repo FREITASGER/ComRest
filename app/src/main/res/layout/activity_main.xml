@@ -44,7 +44,7 @@
                     android:layout_width="192dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
-                    android:text="Listar"
+                    android:text="@string/list"
                     app:icon="@drawable/listar"
                     app:layout_constraintStart_toStartOf="parent"
                     tools:layout_editor_absoluteY="10dp" />
@@ -60,7 +60,7 @@
                     android:layout_width="192dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
-                    android:text="Crear Restaurante"
+                    android:text="@string/add_restaurant"
                     app:icon="@drawable/ic_baseline_restaurant_menu_24"
                     app:layout_constraintEnd_toEndOf="parent"
                     tools:layout_editor_absoluteY="10dp" />

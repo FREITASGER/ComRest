@@ -19,7 +19,7 @@
             android:id="@+id/textView"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
-            android:text="Nombre:" />
+            android:text="@string/name" />
 
         <EditText
             android:id="@+id/modify_text_name"
@@ -43,14 +43,14 @@
             android:id="@+id/textView3"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
-            android:text="Vegan:" />
+            android:text="@string/vegan" />
 
         <CheckBox
             android:id="@+id/cb_vegan_modify"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="CheckBox" />
+            android:text="@string/checkbox" />
     </LinearLayout>
 
     <LinearLayout
@@ -65,7 +65,7 @@
             android:id="@+id/textView2"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
-            android:text="Comentario:" />
+            android:text="@string/comment" />
 
         <EditText
             android:id="@+id/modify_text_comment"
@@ -92,7 +92,7 @@
             android:layout_weight="1"
             android:padding="5dp"
             android:onClick="modifyButtonRestaurant"
-            android:text="Modificar"
+            android:text="@string/modify"
             app:icon="@android:drawable/ic_menu_save" />
 
         <Button
@@ -102,7 +102,7 @@
             android:layout_weight="1"
             android:padding="5dp"
             android:onClick="goBackButtonModify"
-            android:text="Cancelar"
+            android:text="@string/cancel"
             app:icon="@android:drawable/ic_menu_set_as" />
 
     </LinearLayout>

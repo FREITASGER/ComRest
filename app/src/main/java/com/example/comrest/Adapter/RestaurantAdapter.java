@@ -126,9 +126,9 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.Re
              * Dialogo para pregunta antes de si quiere modificar -> https://developer.android.com/guide/topics/ui/dialogs?hl=es-419
              */
             AlertDialog.Builder builder = new AlertDialog.Builder(context); //le pasamos el contexto donde estamos
-            builder.setMessage("Quieres modificar el restaurante")
-                    .setTitle("Modificar restaurante")
-                    .setPositiveButton("Si", (dialog, id) -> { //Añadimos los botones
+            builder.setMessage(R.string.are_you_sure_you_modify)
+                    .setTitle(R.string.restaurant_modify)
+                    .setPositiveButton(R.string.yes, (dialog, id) -> { //Añadimos los botones
                         final AppDatabase dbD = Room.databaseBuilder(context, AppDatabase.class, DATABASE_NAME) //Instanciamos la BBDD -> Pasamos el contexto para saber donde estamos
                                 .allowMainThreadQueries().build();
 
@@ -139,7 +139,7 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.Re
                         context.startActivity(intent);//lanzamos el intent que nos lleva al layout correspondiente
 
                     })
-                    .setNegativeButton("No", (dialog, id) -> dialog.dismiss()); //Botones del dialogo que salta
+                    .setNegativeButton(R.string.not, (dialog, id) -> dialog.dismiss()); //Botones del dialogo que salta
             AlertDialog dialog = builder.create();
             dialog.show();//Importante para que se muestre
         }
@@ -153,9 +153,9 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.Re
              * Dialogo para pregunta antes de si quiere borrar -> https://developer.android.com/guide/topics/ui/dialogs?hl=es-419
              */
             AlertDialog.Builder builder = new AlertDialog.Builder(context); //le pasamos el contexto donde estamos
-            builder.setMessage("Seguro que quieres eliminar")
-                    .setTitle("Eliminar Restaurante")
-                    .setPositiveButton("Si", (dialog, id) -> { //Añadimos los botones
+            builder.setMessage(R.string.are_you_sure_you_want_delete)
+                    .setTitle(R.string.restaurant_delete)
+                    .setPositiveButton(R.string.yes, (dialog, id) -> { //Añadimos los botones
                         final AppDatabase db = Room.databaseBuilder(context, AppDatabase.class, DATABASE_NAME) //Instanciamos la BBDD -< Pasamos el contexto para saber donde estamos
                                 .allowMainThreadQueries().build();
                         Restaurant restaurant = restaurantList.get(position); //Recuperamos el objeto po su posicion para pasarselo al delete
@@ -164,7 +164,7 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.Re
                         restaurantList.remove(position); //Borra solo de la lista que muestra no de la BBDD
                         notifyItemRemoved(position); // Para notificar a Android que hemos borrado algo y refrescar la lista
                     })
-                    .setNegativeButton("No", (dialog, id) -> dialog.dismiss()); //Botones del dialogo que salta
+                    .setNegativeButton(R.string.not, (dialog, id) -> dialog.dismiss()); //Botones del dialogo que salta
             AlertDialog dialog = builder.create();
             dialog.show();//Importante para que se muestre
         }

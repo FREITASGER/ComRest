@@ -53,16 +53,16 @@ public class RestaurantDetailsActivity extends AppCompatActivity {
              * Dialogo para pregunta antes de si quiere borrar -> https://developer.android.com/guide/topics/ui/dialogs?hl=es-419
              */
             AlertDialog.Builder builder = new AlertDialog.Builder(this); //le pasamos el contexto donde estamos
-            builder.setMessage("Quieres eliminar el restaurante")
-                    .setTitle("Eliminar Restaurante")
-                    .setPositiveButton("Si", (dialog, id) -> { //Añadimos los botones
+            builder.setMessage(R.string.do_you_want_delete)
+                    .setTitle(R.string.restaurante_delete)
+                    .setPositiveButton(R.string.yes, (dialog, id) -> { //Añadimos los botones
                         final AppDatabase dbD = Room.databaseBuilder(this, AppDatabase.class, DATABASE_NAME) //Instanciamos la BBDD -> Pasamos el contexto para saber donde estamos
                                 .allowMainThreadQueries().build();
                         dbD.restaurantDao().delete(restaurant);
                         restaurantList();
 
                     })
-                    .setNegativeButton("No", (dialog, id) -> dialog.dismiss()); //Botones del dialogo que salta
+                    .setNegativeButton(R.string.not, (dialog, id) -> dialog.dismiss()); //Botones del dialogo que salta
             AlertDialog dialog = builder.create();
             dialog.show();//Importante para que se muestre
         }));
@@ -73,9 +73,9 @@ public class RestaurantDetailsActivity extends AppCompatActivity {
              * Dialogo para pregunta antes de si quiere modificar -> https://developer.android.com/guide/topics/ui/dialogs?hl=es-419
              */
             AlertDialog.Builder builder = new AlertDialog.Builder(this); //le pasamos el contexto donde estamos
-            builder.setMessage("Desea modificar el restaurante")
-                    .setTitle("Modificar Restaurante")
-                    .setPositiveButton("Si", (dialog, id) -> { //Añadimos los botones
+            builder.setMessage(R.string.are_you_sure_modify)
+                    .setTitle(R.string.restaurant_modify)
+                    .setPositiveButton(R.string.yes, (dialog, id) -> { //Añadimos los botones
                         final AppDatabase dbD = Room.databaseBuilder(this, AppDatabase.class, DATABASE_NAME) //Instanciamos la BBDD -> Pasamos el contexto para saber donde estamos
                                 .allowMainThreadQueries().build();
 
@@ -84,7 +84,7 @@ public class RestaurantDetailsActivity extends AppCompatActivity {
                         this.startActivity(intent.get()); //lanzamos el intent que nos lleva al layout correspondiente
 
                     })
-                    .setNegativeButton("No", (dialog, id) -> dialog.dismiss()); //Botones del dialogo que salta
+                    .setNegativeButton(R.string.not, (dialog, id) -> dialog.dismiss()); //Botones del dialogo que salta
             AlertDialog dialog = builder.create();
             dialog.show();//Importante para que se muestre
         }));

@@ -69,7 +69,7 @@ public class RestarurantRegisterActivity extends AppCompatActivity {
 
         //If por si acaso el point no está creado, el usuario no ha selecionado nada en el mapa, asi no da error al crear la tarea porque falte latitude y longuitude
         if (point == null) {
-            Toast.makeText(this, "Selecciona una posicion en el mapa", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, R.string.select_one_postion_in_the_map, Toast.LENGTH_LONG).show();
             return;
         }
 
@@ -81,13 +81,13 @@ public class RestarurantRegisterActivity extends AppCompatActivity {
         try {
             db.restaurantDao().insert(restaurant); // Insertamos el objeto dentro de la BBDD
 
-            Toast.makeText(this, "Restaurante registrado", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, R.string.register_restaurant, Toast.LENGTH_LONG).show();
             etName.setText(""); //Para vaciar las cajas de texto y prepararlas para registrar otra tarea
             etComment.setText("");
 
             etName.requestFocus(); //recuperamos el foco
         } catch (SQLiteConstraintException sce) {
-            Toast.makeText(this, "Error en el registro", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, R.string.error_message, Toast.LENGTH_LONG).show();
         }
     }
 
